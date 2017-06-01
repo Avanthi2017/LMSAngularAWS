@@ -1,0 +1,76 @@
+<div ng-controller="adminGenreController">
+	<div class="page-header">
+		<h1>List of Genres in LMS</h1>
+	</div>
+	<div class="input-group">
+		<input type="text" class="form-control" ng-model="searchString"
+			placeholder="Search for..." ng-change="searchGenres()">
+	</div>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a href=""
+				ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
+	<div>
+		<button type="button" class="btn btn-primary"
+			ng-click="showAddGenreModal()">AddNewGenre</button>
+			<button type="button" class="btn btn-primary"
+			ng-click="back()">Back</button>
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="addGenreModal"
+		modal="addGenreModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'addgenre.html'"></div>
+		</div>
+	</div>
+
+
+	<table class="table" id="genresTable">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th><a ng-click="sort()">Genre Name</a></th>
+				<th>Books</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				ng-repeat="g in genres | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+				<td>{{$index+1}}</td>
+				<td>{{g.genreName}}</td>
+				<td><span ng-repeat="b in g.books">{{b.title}} |</span>
+				<td><button type="button" class="btn btn-primary"
+						ng-click="showEditGenreModal(g.genreId)">Update</button></td>
+				<td><button type="button" class="btn btn-danger"
+						ng-click="showDeleteGenreModal(g.genreId)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="modal fade bs-example-modal-lg" id="editGenreModal"
+		modal="editGenreModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'editgenre.html'"></div>
+		</div>
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="deleteGenreModal"
+		modal="deleteGenreModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'deletegenre.html'"></div>
+		</div>
+	</div>
+
+</div>
+
+
+

@@ -1,0 +1,20 @@
+
+<div>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close" ng-click="closeModal()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-title">Update Author Details</h4>
+	</div>
+	<div class="modal-body">
+		<p>Enter the details of  Author:</p>
+		<input type="text" ng-model="author.authorName"> <br />
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal"
+			ng-click="closeModal()">Close</button>
+		<button type="button" class="btn btn-primary"
+			ng-click="updateAuthor()">Update</button>
+	</div>
+</div>

@@ -1,0 +1,67 @@
+<div ng-controller="adminBorrowerController">
+<div class="page-header">
+		<h1>List of Borrowers in LMS</h1>
+	</div>
+	<div class="input-group">
+		<input type="text" class="form-control" ng-model="searchString"
+			placeholder="Search for..." ng-change="searchBorrowers()">
+	</div>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a href=""
+				ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
+<div class="col-md-6">
+	<table class="table table-striped" id="borrowersTable">
+		<thead>
+		<col width="50">
+		<tr>
+			<th>#</th>
+			<th>Borrower Name</th>
+			<th>Borrower Address</th>
+			<th>Borrower Phone</th>
+			<th>Books</th>
+		</tr>
+		</thead>
+		<tbody>
+				<tr ng-repeat="b in borrowers | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+					<td>{{$index+1}}</td>
+				<td>{{b.name}}</td>
+				<td>{{b.address}}</td>
+				<td>{{b.phone}}</td>
+				<td >
+				<div  class=scrollable>
+					<div ng-repeat="bl in b.bookloans">
+					
+					<br>Book: {{bl.book.title}}
+					Branch:{{bl.branch.branchName}}
+					DateOut:{{bl.dateOut}}
+					DueDate:{{bl.dueDate}}
+						<p>	<button type="button" class="btn btn-primary" 
+								 ng-click="showEditBookLoan(bl)">update</button></p>
+
+					</div>
+					</div>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+<div class="modal fade edit-bookloan-modal" id="editBookLoanModal"
+		modal="editBookLoanModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'editbookloan.html'"></div>
+		</div>
+	</div>
+</div>
+<button type="button" class="btn btn-primary"
+			ng-click="back()">Back</button>
+</div>
+
+
+

@@ -1,0 +1,83 @@
+<div ng-controller="bookController">
+	<div class="page-header">
+		<h1>List of Books in LMS</h1>
+	</div>
+	<div class="input-group">
+		<input type="text" class="form-control" ng-model="searchString"
+			placeholder="Search for..." ng-change="searchBooks()">
+	</div>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a href=""
+				ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
+	<div>
+		<button type="button" class="btn btn-primary"
+			ng-click="showAddBookModal()">AddNewBook</button>
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="addBookModal"
+		modal="addBookModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'addbook.html'"></div>
+		</div>
+	</div>
+
+
+	<table class="table" id="booksTable">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>BookName</th>
+				<th>Publisher</th>
+				<th>Genre</th>
+				<th>Author</th>
+				<th>Branch</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				ng-repeat="b in books | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+				<td>{{$index+1}}</td>
+				<td>{{b.title}}</td>
+				<td><span >{{b.publisher.publisherName}} |</span>
+				<td><div class=scrollable> <span ng-repeat="g in b.genres">{{g.genreName}} |</span></div>
+				<td><span ng-repeat="a in b.authors">{{a.authorName}} |</span>
+				<td><div class=scrollable><span  ng-repeat="bc in b.bookCopies" scrollable>BranchName:{{bc.branch.branchName}}
+				<br> NoOfCopies:{{bc.noOfCopies}} |</span></div>
+				
+				<td><button type="button" class="btn btn-primary"
+						ng-click="showEditBookModal(b.bookId)">Update</button></td>
+				<td><button type="button" class="btn btn-danger"
+						ng-click="showDeleteBookModal(b.bookId)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="modal fade bs-example-modal-lg" id="editBookModal"
+		modal="editBookModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'editbook.html'"></div>
+		</div>
+		<!-- <pre>{{author | json}}</pre> -->
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="deleteBookModal"
+		modal="deleteBookModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'deletebook.html'"></div>
+		</div>
+	</div>
+
+</div>
+
+
+

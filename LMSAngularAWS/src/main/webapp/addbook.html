@@ -1,0 +1,59 @@
+
+<div>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close" ng-click="closeModal()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-title">Add Book</h4>
+	</div>
+	<div class="modal-body">
+		Book Name
+		<p>
+			<input  class="form-control required" type="text" ng-model="addBook.book.title"> <br />
+		</p>
+		
+		Publisher:<p>
+		 <select class="selectpicker form-control" ng-model="addBook.publishersmodel"
+		  ng-options="publisher as publisher.publisherName for publisher in addBook.publishers track by publisher.publisherId"></select>
+		</p>
+		<p>
+		Authors:
+		 <select multiple="true" class="selectpicker form-control" ng-model="addBook.authorsmodel"
+		  ng-options="author as author.authorName for author in addBook.authors track by author.authorId"></select>
+		</p>
+		<p>
+		Genres:
+		 <select multiple="true" class="selectpicker form-control" ng-model="addBook.genresmodel"
+		  ng-options="genre as genre.genreName for genre in addBook.genres track by genre.genreId"></select>
+		</p>
+
+		<p>Branches:
+		<div class="col-md-6">
+			<table class="table table-striped" id="booksTable">
+				<thead>
+					<tr>
+						<th>BranchName</th>
+						<th>NoOfCopies</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="b in addBook.branchs">
+									<td>{{b.branchName}}</td>
+									<td contenteditable='true'>  <input type="number" min="1" ng-model="b.bookCopies[0].noOfCopies"></td>
+								</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+
+
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal"
+			ng-click="closeModal()">Close</button>
+		<button type="button" class="btn btn-primary" ng-click="addBook(addBook.publishersmodel,addBook.authorsmodel,addBook.genresmodel)">Add</button>
+	</div>
+</div>

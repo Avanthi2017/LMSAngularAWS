@@ -1,0 +1,22 @@
+
+<div>
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close" ng-click="closeModal()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-title">Update Borrower Details</h4>
+	</div>
+	<div class="modal-body">
+		<p>Enter the details of  Borrower:</p>
+		<input type="text" class="form-control" ng-model="borrower.name"> <br />
+		<input type="text" class="form-control" ng-model="borrower.address"> <br />
+		<input type="text" class="form-control"  ng-model="borrower.phone"> <br />
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal"
+			ng-click="closeModal()">Close</button>
+		<button type="button" class="btn btn-primary"
+			ng-click="updateBorrower()">Update</button>
+	</div>
+</div>

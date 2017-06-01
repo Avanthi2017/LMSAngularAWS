@@ -1,0 +1,20 @@
+<div >
+	<div class="modal-header" >
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close" ng-click="closeModal()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-title" id="delete-modal-title">Delete Branch</h4>
+	</div>
+	<div class="modal-body" id="delete-modal-body">
+		<p > BranchName:</p>
+		<input type="text" disabled="disabled"  class="form-control"ng-model="branch.branchName"> <br />
+		Branch Address:<input type="text" disabled="disabled" ng-model="branch.branchAddress"> <br />
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal"
+			ng-click="closeModal()">Close</button>
+		<button type="button" class="btn btn-primary"
+			ng-click="deleteBranch()">Delete</button>
+	</div>
+</div>

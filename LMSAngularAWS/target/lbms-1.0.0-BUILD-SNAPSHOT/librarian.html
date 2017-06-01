@@ -1,0 +1,22 @@
+<div>
+<form name="librarianForm">
+	<div class="modal-header">
+		<h4 class="modal-title">Welcome Librarian!!</h4>
+	</div>
+		<div class="modal-body">
+			<p>Enter BranchId</p>
+			<div class="form-group">
+				<div class="col-lg-12">
+			<input class="form-control required" type="number" ng-pattern="'\d+'" name="branchId" ng-modal="branchId"></div>
+		</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary"   ng-click="checkLibrarian()">Submit</button>
+	</div>
+		<div ng-messages="librarianForm.branchId.$error" style="color:maroon" role="alert">
+    <div ng-message="required">Enter branch Info</div>
+    <div ng-message="Invalid">Enter valid branch</div>
+    <div ng-pattern="pattern">InvaildData</div>
+  </div>
+  </form>
+</div>

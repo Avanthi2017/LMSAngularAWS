@@ -8,35 +8,23 @@
 		<h4 class="modal-title">Update Book Details</h4>
 	</div>
 	<div class="modal-body">
-		<p>Book Name</p>
-		<p>
-			<input type="text" ng-model="book.title"> <br />
+		<p> 
+			BookName:<input  class="form-control required" name="name" type="text" ng-model="book.title"> <br />
 		</p>
-		<p>
-		  <select data-ng-model="bookPublisher"
-		      data-ng-options="publisher.publisherName for publisher in publishers track by publisher.id"></select>
 		
-		
-			<select class="selectpicker form-control" ng-model="publisherId">
-				<option ng-repeat="p in publishers"
-					
-					value="{{p.publisherId}}">{{p.publisherName}}</option>
-			</select>
+		<p>Publisher:
+		 <select class="selectpicker form-control required" ng-model="publishersmodel"
+		  ng-options="publisher as publisher.publisherName for publisher in publishers track by publisher.publisherId"></select>
 		</p>
 		<p>
-			<select ng-model="authorIds" multiple ng-multiple="true"
-				class="selectpicker form-control">
-				<option ng-repeat="a in authors"
-					ng-selected="isSelected(book.authors,a.authorId)"
-					value="{{a.authorId}}">{{a.authorName}}</option>
-			</select>
-
+		Authors:
+		 <select multiple="true" class="selectpicker form-control required" ng-model="authorsmodel"
+		  ng-options="author as author.authorName for author in authors track by author.authorId"></select>
 		</p>
 		<p>
-			<select name="genreIds" id="genreIds"
-				ng-model="genreIds.multipleSelect" multiple>
-				<option ng-repeat="g in genres" value="{{g.genreId}}">{{g.genreName}}</option>
-			</select>
+		Genres:
+		 <select multiple="true" class="selectpicker form-control required" ng-model="genresmodel"
+		  ng-options="genre as genre.genreName for genre in genres track by genre.genreId"></select>
 		</p>
 
 		<p>Branches:
@@ -50,12 +38,10 @@
 				</thead>
 				<tbody>
 					<tr ng-repeat="b in branchs">
-						<td>BranchName:{{b.branchName}}</td>
-						<div ng-if="book.bookCopies.branchId == b.branchId">
-							<td contenteditable='true'><input type="number" ng-model=""></td>
-						</div>
+									<td>{{b.branchName}}</td>
+									<td contenteditable='true'>  <input type="number" min="1" ng-model="b.bookCopies[0].noOfCopies"></td>
+								</tr>
 
-					</tr>
 				</tbody>
 			</table>
 
@@ -67,6 +53,6 @@
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal"
 			ng-click="closeModal()">Close</button>
-		<button type="button" class="btn btn-primary" ng-click="updateBook()">Update</button>
+		<button type="button" class="btn btn-primary" ng-click="updateBook(publishersmodel,authorsmodel,genresmodel)">Update</button>
 	</div>
 </div>

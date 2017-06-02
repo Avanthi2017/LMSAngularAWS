@@ -1,4 +1,5 @@
 lmsApp.factory("branchService", function($http, branchConstants){
+	var getBranchByPkData = {};
 	return{
 		getAllBranchsService: function(){
 			var getBranchData = {};
@@ -21,18 +22,36 @@ lmsApp.factory("branchService", function($http, branchConstants){
 			})
 		},
 		getBookCopiesByIdsService: function(bookId,branchId){
-			var getBookCopiesData = {};
+			var getBookCopiesDatabyIds = {};
 			return $http({
 				url: branchConstants.GET_NOOFCOPIES_BY_BOOKID_BRANCHID_URL+bookId+"/"+branchId
 			}).success(function(data){
-				getBookCopiesData = data;
+				getBookCopiesDatabyIds = data;
 			}).then(function(){
-				return getBookCopiesData;
+				return getBookCopiesDatabyIds;
 			})
 		},
-	
+		getBranchByBookIdService: function(bookId){
+			var getBranchByBookId = {};
+			return $http({
+				url: branchConstants.GET_ALL_BRANCHS_BY_BOOKID_URL+bookId
+			}).success(function(data){
+				getBranchByBookId = data;
+			}).then(function(){
+				return getBranchByBookId;
+			})
+		},
+		getBookCopiesByBranchIdService: function(branchId){
+			var getBookCopiesDataByBranchId = {};
+			return $http({
+				url: branchConstants.GET_ALL_BOOKCOPIES_BY_BRANCHID_URL+branchId
+			}).success(function(data){
+				getBookCopiesDataByBranchId = data;
+			}).then(function(){
+				return getBookCopiesDataByBranchId;
+			});
+		},
 		getBranchByPKService: function(branchId){
-			var getBranchByPkData = {};
 			return $http({
 				url: branchConstants.GET_BRANCH_BY_PK_URL+branchId
 			}).success(function(data){
@@ -40,6 +59,12 @@ lmsApp.factory("branchService", function($http, branchConstants){
 			}).then(function(){
 				return getBranchByPkData;
 			})
-		}
+		},
+		
+		getBranch: function () {
+            return getBranchByPkData;
+        }
+		
+		
 	}
 })

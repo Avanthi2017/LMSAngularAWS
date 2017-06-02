@@ -1,0 +1,82 @@
+<div ng-controller="adminBorrowerController">
+	<div class="page-header">
+		<h1>List of Borrowers in LMS</h1>
+	</div>
+	<div class="input-group">
+		<input type="text" class="form-control" ng-model="searchString"
+			placeholder="Search for..." ng-change="searchBorrowers()">
+	</div>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a href=""
+				ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
+	<div>
+		<button type="button" class="btn btn-primary"
+			ng-click="showAddBorrowerModal()">AddNewBorrower</button>
+			<button type="button" class="btn btn-primary"
+			ng-click="back()">Back</button>
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="addBorrowerModal"
+		modal="addBorrowerModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'addborrower.html'"></div>
+		</div>
+	</div>
+
+
+	<table class="table" id="authorsTable">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>BorrowerName</th>
+				<th>BorrowerAddress</th>
+				<th>BorrowerPhone</th>
+				<th>BookLoans</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				ng-repeat="b in borrowers | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+				<td>{{$index+1}}</td>
+				<td>{{b.name}}</td>
+				<td>{{b.address}}</td>
+				<td>{{b.phone}}</td>
+				<td><span ng-repeat="b in b.bookloans"><br>Book:{{b.book.title}}<br>Branch:{{b.branch.branchName}}<br>DateOut:{{b.dateOut}}
+				<br>DateIn:{{b.dateIn}}<br>DueDate:{{b.dueDate}}</span>
+				<td><button type="button" class="btn btn-primary"
+						ng-click="showEditBorrowerModal(b.cardNo)">Update</button></td>
+				<td><button type="button" class="btn btn-danger"
+						ng-click="showDeleteBorrowerModal(b.cardNo)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="modal fade bs-example-modal-lg" id="editBorrowerModal"
+		modal="editBorrowerModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'editborrower.html'"></div>
+		</div>
+		<!-- <pre>{{author | json}}</pre> -->
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="deleteBorrowerModal"
+		modal="deleteBorrowerModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'deleteborrower.html'"></div>
+		</div>
+	</div>
+
+</div>
+
+
+

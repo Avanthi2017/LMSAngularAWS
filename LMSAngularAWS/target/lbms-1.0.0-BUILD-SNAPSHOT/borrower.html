@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div ng-controller="borrowerUserController">
 
-</body>
-</html>
+<div ng-show="submissionSuccess">Inavlid Card No</div>
+	<div class="modal-header">
+		<h4 class="modal-title">Welcome Borrower!!</h4>
+	</div>
+	<form action="checkborrower" id="myForm">
+		<div class="modal-body">
+			<p>Enter cardNo</p>
+			<div class="form-group">
+				<div class="col-lg-12">
+			<input size="auto" class="form-control required" type="number"  ng-model="cardNo" >
+		</div>
+		</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" ng-click="checkBorrower()">Submit</button>
+		</div>
+	</form>
+	<div class="alert alert-success" hidden="true"> 
+  <strong>{{successTextAlert}}</strong>
+</div>
+</div>
+<!-- /.modal-content -->

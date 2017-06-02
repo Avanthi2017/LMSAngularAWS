@@ -1,0 +1,19 @@
+<div >
+	<div class="modal-header" >
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close" ng-click="closeModal()">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h4 class="modal-select" id="book-modal-select">Select Branch</h4>
+	</div>
+	<div class="modal-body" id="book-modal-body">
+		<p >Book:</p>
+		 <select ng-model="bookCopiesmodel" ng-options="bookCopy as bookCopy.book.title for bookCopy in bookCopies track by bookCopy.book.bookId" ng-change="checkOutBook(bookCopiesmodel)"></select>
+	</div>
+	
+	<div class="modal-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal"
+			ng-click="closeModal()">Close</button>
+	</div>
+</div>
+

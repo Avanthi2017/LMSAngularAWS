@@ -1,0 +1,79 @@
+<div ng-controller="adminBranchController">
+	<div class="page-header">
+		<h1>List of Branchs in LMS</h1>
+	</div>
+	<div class="input-group">
+		<input type="text" class="form-control" ng-model="searchString"
+			placeholder="Search for..." ng-change="searchBranchs()">
+	</div>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a href=""
+				ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
+	<div>
+		<button type="button" class="btn btn-primary"
+			ng-click="showAddBranchModal()">AddNewBranch</button>
+			<button type="button" class="btn btn-primary"
+			ng-click="back()">Back</button>
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="addBranchModal"
+		modal="addBranchModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'addbranch.html'"></div>
+		</div>
+	</div>
+
+
+	<table class="table" id="authorsTable">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>BranchName</th>
+				<th>BranchAddress</th>
+				<th>Borrowers</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				ng-repeat="b in branchs | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+				<td>{{$index+1}}</td>
+				<td>{{b.branchName}}</td>
+				<td>{{b.branchAddress}}</td>
+				<td><span ng-repeat="br in b.borrowers"><br>{{br.name}}</span>
+				<td><button type="button" class="btn btn-primary"
+						ng-click="showEditBranchModal(b.branchId)">Update</button></td>
+				<td><button type="button" class="btn btn-danger"
+						ng-click="showDeleteBranchModal(b.branchId)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="modal fade bs-example-modal-lg" id="editBranchModal"
+		modal="editBranchModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'editbranch.html'"></div>
+		</div>
+		<!-- <pre>{{author | json}}</pre> -->
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="deleteBranchModal"
+		modal="deleteBranchModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'deletebranch.html'"></div>
+		</div>
+	</div>
+
+</div>
+
+
+

@@ -1,0 +1,47 @@
+<div ng-controller="borrowerUserController">
+<div class="col-md-12"  >
+<h3>{{$scope.borrower.name}}</h3>
+	<table class="table table-striped" id="booksTable">
+		<thead>
+			<tr>
+				<th>BookName</th>
+				<th>BranchName</th>
+				<th>DateOut</th>
+				<th>DueDate</th>
+				<th>CheckIn</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="bookLoan in borrower.bookloans">
+				<td>{{bookLoan.book.title}}</td>
+				<td>{{bookLoan.branch.branchName}}</td>
+				<td>{{bookLoan.dateOut}}</td>
+				<td>{{bookLoan.dueDate}}</td>
+				<td>{{bookLoan.dateIn}}</td>
+				<td><input type="button" class="btn btn-primary"  ng-click="checkInBook(bookLoan)" value="checkin"></td>
+			</tr>
+		</tbody>
+	</table>
+	<div>
+		<button type="button" class="btn btn-info" ng-click="getAllBranchs()">CheckOutBook</button>
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="branchSelectionModal"
+		modal="branchSelectionModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'branchselection.html'"></div>
+		</div>
+	</div>
+	
+	<div class="modal fade bs-example-modal-lg" id="bookSelectionModal"
+		modal="bookSelectionModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'checkout.html'"></div>
+		</div>
+	</div>
+					<p><a href="index.html" class="btn btn-info pull-right" role="button">Back</a></p>
+
+</div>
+</div>

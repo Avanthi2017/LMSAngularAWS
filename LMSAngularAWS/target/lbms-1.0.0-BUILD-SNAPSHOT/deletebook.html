@@ -4,16 +4,21 @@
 			aria-label="Close" ng-click="closeModal()">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<h4 class="modal-title" id="delete-modal-title">Delete Author</h4>
+		<h4 class="modal-title" id="delete-modal-title">Delete Book</h4>
 	</div>
 	<div class="modal-body" id="delete-modal-body">
-		<p > AuthorName:</p>
-		<input type="text" disabled="disabled" ng-model="author.authorName"> <br />
+	<p>
+		 <select class="selectpicker form-control required" ng-model="bookbranchmodal"
+		  ng-options="bc.branch as bc.branch.branchName for bc in book.bookCopies track by bc.branch.branchId"></select>
+</p>
+	
+		<p > Book:</p>
+		<input type="text" disabled="disabled" ng-model="book.title"> <br />
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-default" data-dismiss="modal"
 			ng-click="closeModal()">Close</button>
 		<button type="button" class="btn btn-primary"
-			ng-click="deleteAuthor()">Delete</button>
+			ng-click="deleteBook(bookbranchmodal)">Delete</button>
 	</div>
 </div>

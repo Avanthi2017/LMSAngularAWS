@@ -1,0 +1,81 @@
+<div ng-controller="adminPublisherController">
+	<div class="page-header">
+		<h1>List of Publishers in LMS</h1>
+	</div>
+	<div class="input-group">
+		<input type="text" class="form-control" ng-model="searchString"
+			placeholder="Search for..." ng-change="searchPublishers()">
+	</div>
+	<div class="col-md-10">
+		<ul class="pagination">
+			<li><a href="" ng-click="pagination.prevPage()">&laquo;</a></li>
+			<li ng-repeat="n in [] | range: pagination.numPages"
+				ng-class="{active: n == pagination.page}"><a href=""
+				ng-click="pagination.toPageId(n)">{{n + 1}}</a></li>
+			<li><a href="" ng-click="pagination.nextPage()">&raquo;</a></li>
+		</ul>
+	</div>
+	<div>
+		<button type="button" class="btn btn-primary"
+			ng-click="showAddPublisherModal()">AddNewPublisher</button>
+			<button type="button" class="btn btn-primary"
+			ng-click="back()">Back</button>
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="addPublisherModal"
+		modal="addPublisherModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'addpublisher.html'"></div>
+		</div>
+	</div>
+
+
+	<table class="table" id="authorsTable">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>PublisherName</th>
+				<th>PublisherAddress</th>
+				<th>PublisherPhone</th>
+				<th>Books</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr
+				ng-repeat="p in publishers | startFrom: pagination.page * pagination.perPage | limitTo: pagination.perPage">
+				<td>{{$index+1}}</td>
+				<td>{{p.publisherName}}</td>
+				<td>{{p.publisherAddress}}</td>
+				<td>{{p.publisherPhone}}</td>
+				<td><span ng-repeat="b in p.books"><br>Book:{{b.title}}|</span>
+				<td><button type="button" class="btn btn-primary"
+						ng-click="showEditPublisherModal(p.publisherId)">Update</button></td>
+				<td><button type="button" class="btn btn-danger"
+						ng-click="showDeletePublisherModal(p.publisherId)">Delete</button></td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="modal fade bs-example-modal-lg" id="editPublisherModal"
+		modal="editPublisherModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'editpublisher.html'"></div>
+		</div>
+		<!-- <pre>{{author | json}}</pre> -->
+	</div>
+
+	<div class="modal fade bs-example-modal-lg" id="deletePublisherModal"
+		modal="deletePublisherModal" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content" ng-include="'deletepublisher.html'"></div>
+		</div>
+	</div>
+
+</div>
+
+
+

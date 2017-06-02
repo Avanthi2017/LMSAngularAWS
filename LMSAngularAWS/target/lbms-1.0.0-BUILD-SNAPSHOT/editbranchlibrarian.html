@@ -1,0 +1,33 @@
+<div ng-controller="librarianUserController">
+	<div class="modal-header">
+		<h4 class="modal-title">Edit Branch</h4>
+	</div>
+		<div class="modal-body">
+			<p>Enter the details of branch to update</p>
+			<div class="form-group">
+				<div class="col-lg-12">
+		BranchName:<input class="form-control required" type="text" ng-model="branch.branchName">
+		BranchAddress:<input  type="text" name="branchAddress" class="form-control" ng-model="branch.branchAddress">
+					<div class="col-md-6">
+						<table class="table table-striped" id="bookCopiesTable">
+							<thead>
+								<tr>
+									<th>Book</th>
+									<th>NoOfCopies</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="bc in branch.bookCopies">
+									<td>{{bc.book.title}}</td>
+									<td contenteditable='true'>  <input type="number" min="1" ng-model="bc.noOfCopies"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+		</div>
+		</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-primary" ng-click="back()">Done</button>
+		</div>
+</div>

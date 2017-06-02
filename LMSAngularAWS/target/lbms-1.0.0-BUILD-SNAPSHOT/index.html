@@ -6,23 +6,30 @@
 	src="http://code.angularjs.org/1.4.1/angular-cookies.js"></script>
 <script src="./resources/lib/simplePagination.js"></script>
 <script src="./resources/lib/angular-ui-bootstrap-modal.js"></script>
+<script src="./resources/lib/angular-messages.js"></script>
 <script src="./resources/business/common/app.js"></script>
 <script src="./resources/business/common/config.js"></script>
-<script src="./resources/business/author/author-controllers.js"></script>
-<script src="./resources/business/author/author-services.js"></script>
-<script src="./resources/business/author/author-constants.js"></script>
-<script src="./resources/business/book/book-controllers.js"></script>
+<script src="./resources/business/users/admin/admin-book-controller.js"></script>
+<script src="./resources/business/users/admin/admin-publisher-controller.js"></script>
+<script src="./resources/business/users/admin/admin-genre-controller.js"></script>
+<script src="./resources/business/users/admin/admin-branch-controller.js"></script>
+<script src="./resources/business/users/admin/admin-author-controller.js"></script>
+<script src="./resources/business/users/admin/admin-borrower-controller.js"></script>
+<script src="./resources/business/users/librarian/librarian-controller.js"></script>
+<script src="./resources/business/users/borrower/borrower-controller.js"></script>
 <script src="./resources/business/book/book-services.js"></script>
 <script src="./resources/business/book/book-constants.js"></script>
-<script src="./resources/business/publisher/publisher-controllers.js"></script>
 <script src="./resources/business/publisher/publisher-services.js"></script>
 <script src="./resources/business/publisher/publisher-constants.js"></script>
-<script src="./resources/business/branch/branch-controllers.js"></script>
 <script src="./resources/business/branch/branch-services.js"></script>
 <script src="./resources/business/branch/branch-constants.js"></script>
-<script src="./resources/business/genre/genre-controllers.js"></script>
 <script src="./resources/business/genre/genre-services.js"></script>
 <script src="./resources/business/genre/genre-constants.js"></script>
+<script src="./resources/business/borrower/borrower-services.js"></script>
+<script src="./resources/business/borrower/borrower-constants.js"></script>
+<script src="./resources/business/author/author-services.js"></script>
+<script src="./resources/business/author/author-constants.js"></script>
+
 <html lang="en" ng-app="lmsApp">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -39,13 +46,13 @@
 
 <!-- Bootstrap core CSS -->
 <link href="./template_files/bootstrap.min.css" rel="stylesheet">
+<link href="./css/simple-sidebar.css" rel="stylesheet">
 <!-- Bootstrap theme -->
 <link href="./template_files/bootstrap-theme.min.css" rel="stylesheet">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <link href="./template_files/ie10-viewport-bug-workaround.css"
 	rel="stylesheet">
-<link href="./template_files/bootstrap-select.min.css" rel="stylesheet">
-<link href="./template_files/bootstrap-select.css" rel="stylesheet">
+
 
 <!-- Custom styles for this template -->
 <link href="./template_files/theme.css" rel="stylesheet">
@@ -62,42 +69,6 @@
 </head>
 
 <body>
-
-	<!-- Fixed navbar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle collapsed"
-					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-					aria-controls="navbar">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand"
-					href="http://getbootstrap.com/examples/theme/#">LMS</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="#">Contact</a></li>
-					<li class="dropdown"><a
-						href="http://getbootstrap.com/examples/theme/#"
-						class="dropdown-toggle" data-toggle="dropdown" role="button"
-						aria-haspopup="true" aria-expanded="false">Menu <span
-							class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href="#/admin">Administrator</a></li>
-							<li><a href="#/librarian">Librarian</a></li>
-							<li><a href="#/borrower">Borrower</a></li>
-						</ul></li>
-				</ul>
-			</div>
-			<!--/.nav-collapse -->
-		</div>
-	</nav>
-
 	<div class="view-container">
 		<section data-ng-view="" id="content" class="animate-fade-up"></section>
 	</div>
@@ -116,8 +87,6 @@
 	<script src="./template_files/docs.min.js.download"></script>
 	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	<script src="./template_files/ie10-viewport-bug-workaround.js.download"></script>
-	<script src="./template_files/bootstrap-select.js"></script>
-	<script src="./template_files/bootstrap-select.min.js"></script>
 
 
 	<div id="global-zeroclipboard-html-bridge"

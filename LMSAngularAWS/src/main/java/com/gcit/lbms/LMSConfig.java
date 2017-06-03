@@ -24,9 +24,9 @@ import com.gcit.lbms.service.BookService;
 @Configuration
 public class LMSConfig {
 	private String driver = "com.mysql.jdbc.Driver";
-	private String url = "jdbc:mysql://awsinstance.cbvt1xjs2m25.us-east-1.rds.amazonaws.com/library";
-	private String userName = "root";
-	private String password = "password";
+	private String url = "jdbc:mysql://rdsmysql.cbvt1xjs2m25.us-east-1.rds.amazonaws.com/library";
+	private String userName = "sailu";
+	private String password = "sailusha";
 
 	@Bean
 	public BasicDataSource dataSource() {
